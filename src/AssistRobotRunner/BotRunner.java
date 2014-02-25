@@ -9,33 +9,70 @@ package AssistRobotRunner;
 
 
 import edu.wpi.first.wpilibj.SimpleRobot;
+import AssistRobotPart.ArmPart;
+import AssistRobotPart.DrivePart;
+import AssistRobotPart.PnuematicPart;
+import AssistRobotPart.SensorPart;
+import AssistRobotPart.ShooterPart;
+import edu.wpi.first.wpilibj.IterativeRobot;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the SimpleRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
-public class BotRunner extends SimpleRobot {
+public class BotRunner extends IterativeRobot {
     /**
      * This function is called once each time the robot enters autonomous mode.
-     */
-    public void autonomous() {
+     */    
+    
+    ArmPart arm;
+    DrivePart drive;
+    PnuematicPart pnuematic;
+    SensorPart sensor;
+    ShooterPart shooter;
+    
+    public void robotInit() {
         
-    }
-
-    /**
-     * This function is called once each time the robot enters operator control.
-     */
-    public void operatorControl() {
-
+        arm = new ArmPart(this);
+        drive = new DrivePart(this);
+        pnuematic = new PnuematicPart(this);
+        sensor = new SensorPart(this);
+        shooter = new ShooterPart(this);
     }
     
-    /**
-     * This function is called once each time the robot enters test mode.
-     */
-    public void test() {
-    
+    public void autonomusInit(){
     }
+        
+    public void autonomousPeriodic() {
+        
+        arm.updateAuto();
+        drive.updateAuto();
+        pnuematic.updateAuto();
+        sensor.updateAuto();
+        shooter.updateAuto();
+    }
+    
+    public void teleopInit(){
+    }
+
+    public void teleopPeriodic() {
+
+        arm.updateTeleop();
+        drive.updateTeleop();
+        pnuematic.updateTeleop();
+        sensor.updateTeleop();
+        shooter.updateTeleop();
+    }
+    
+    public ArmPart getArm()
+    {return arm;}
+    
+    public DrivePart getDrive()
+    {return drive;}
+    
+    public PnuematicPart getPnuematic()
+    {return pnuematic;}
+    
+    public SensorPart getSensor()
+    {return sensor;}
+    
+    public ShooterPart getShooter()
+    {return shooter;}
 }
+    

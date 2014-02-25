@@ -5,6 +5,7 @@
 package AssistRobotPart;
 
 import edu.wpi.first.wpilibj.Compressor;
+import AssistRobotRunner.BotRunner;
 
 /**
  *
@@ -12,9 +13,10 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class PnuematicPart extends BotPart {
     
-    Compressor botCompressor;
+    private Compressor botCompressor;
             
-    public PnuematicPart(){
+    public PnuematicPart(BotRunner runner){
+        super(runner);
         botCompressor = new Compressor(1,2);
     }
     

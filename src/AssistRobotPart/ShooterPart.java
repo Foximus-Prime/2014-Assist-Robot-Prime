@@ -6,6 +6,7 @@ package AssistRobotPart;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import AssistRobotRunner.BotRunner;
 
 /**
  *
@@ -13,13 +14,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  */
 public class ShooterPart extends BotPart {
     
-    Jaguar pullMotor;
+    private Jaguar pullMotor;
     
-    boolean armLimitSwitch;
+    private boolean armLimitSwitch;
     
-    DoubleSolenoid release;
+    private DoubleSolenoid release;
    
-    public ShooterPart(){
+    public ShooterPart(BotRunner runner){
+        super(runner);
         
         pullMotor = new Jaguar(5);
         

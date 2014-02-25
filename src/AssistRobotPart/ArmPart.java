@@ -4,20 +4,22 @@
  */
 package AssistRobotPart;
 
+import AssistRobotRunner.BotRunner;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  *
  * @author Team 3695
  */
+
 public class ArmPart extends BotPart {
     
-    DoubleSolenoid armControl;
+    private DoubleSolenoid armControl;
     
-    boolean armLimit;
+    private boolean armLimit;
     
-    public ArmPart(){
-        
+    public ArmPart(BotRunner runner){
+        super(runner);
         armLimit = true;
       
         armControl = new DoubleSolenoid(3,4);

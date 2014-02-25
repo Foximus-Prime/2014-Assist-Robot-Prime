@@ -4,11 +4,16 @@
  */
 package AssistRobotPart;
 
+import AssistRobotRunner.BotRunner;
+
 /**
  *
  * @author Team 3695
  */
-public abstract class BotPart {
+public abstract class BotPart{
+
+    public BotPart(BotRunner runner){
+    }
     
     public void updateTeleop(){
     }

@@ -7,6 +7,7 @@ package AssistRobotPart;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import AssistRobotRunner.BotRunner;
 
 /**
  *
@@ -19,9 +20,14 @@ public class DrivePart extends BotPart {
     private Jaguar backRight;
     private Jaguar backLeft;
     
+    private BotRunner bot;
+    
     private RobotDrive roboDrive;
     
-    public DrivePart(){
+    public DrivePart(BotRunner runner){
+        super(runner);
+        
+        bot = runner;
         
         frontRight = new Jaguar(1);
         frontLeft = new Jaguar(2);
@@ -29,6 +35,9 @@ public class DrivePart extends BotPart {
         backLeft = new Jaguar(4);
         
         roboDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+    }
+    
+    public void updateTeleop(){
     }
     
 }
