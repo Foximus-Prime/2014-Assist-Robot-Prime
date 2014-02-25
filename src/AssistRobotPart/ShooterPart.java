@@ -14,6 +14,8 @@ import AssistRobotRunner.BotRunner;
  */
 public class ShooterPart extends BotPart {
     
+    private double speed;
+    
     private Jaguar pullMotor;
     
     private BotRunner bot;
@@ -26,6 +28,8 @@ public class ShooterPart extends BotPart {
     public ShooterPart(BotRunner runner){
         super(runner);
         
+        speed = 1;
+        
         bot = runner;
         
         pullMotor = new Jaguar(5);
@@ -36,19 +40,17 @@ public class ShooterPart extends BotPart {
         release = new DoubleSolenoid(1,2);
     }
     
-    public void fire(){
-        
-        release.set(DoubleSolenoid.Value.kForward);
-    }
-    
     public void updateTeleop(){
     
         armLimitSwitch = bot.getSensor().getArmLimit();
+        if(bot.getSensor().getOpStick().getTrigger() && armLimitSwitch)
+            release.set(DoubleSolenoid.Value.kForward);
+        else
+            release.set(DoubleSolenoid.Value.kReverse);
+        
+        if (!armLimitSwitch)
+            pullMotor.set(speed);
+        else
+            pullMotor.stopMotor();
     }
-    
-    
-    
-    
-    
-    
 }
