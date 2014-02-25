@@ -38,7 +38,7 @@ public class ShooterPart extends BotPart {
     
     public void fire(){
         
-        release.set(DoubleSolenoid.Value.kOn);
+        release.set(DoubleSolenoid.Value.kForward);
     }
     
     public void updateTeleop(){
