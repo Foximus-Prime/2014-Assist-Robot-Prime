@@ -16,18 +16,34 @@ public class ShooterPart extends BotPart {
     
     private Jaguar pullMotor;
     
+    private BotRunner bot;
+    
     private boolean armLimitSwitch;
+    private boolean shooterReady;
     
     private DoubleSolenoid release;
    
     public ShooterPart(BotRunner runner){
         super(runner);
         
+        bot = runner;
+        
         pullMotor = new Jaguar(5);
         
         armLimitSwitch = true;
+        shooterReady = false;
         
         release = new DoubleSolenoid(1,2);
+    }
+    
+    public void fire(){
+        
+        release.set(DoubleSolenoid.Value.kOn);
+    }
+    
+    public void updateTeleop(){
+    
+        armLimitSwitch = bot.getSensor().getArmLimit();
     }
     
     

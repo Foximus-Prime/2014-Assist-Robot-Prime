@@ -38,6 +38,12 @@ public class DrivePart extends BotPart {
     }
     
     public void updateTeleop(){
+        
+        if(bot.getSensor().getDriverStick().getRawButton(2))
+            roboDrive.mecanumDrive_Cartesian(0, bot.getSensor().getDriverStick().getY(), bot.getSensor().getDriverStick().getX(), 0);
+        else
+            roboDrive.mecanumDrive_Cartesian(bot.getSensor().getDriverStick().getX(), bot.getSensor().getDriverStick().getY(), 0, 0);
+        
     }
     
 }
