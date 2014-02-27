@@ -35,6 +35,10 @@ public class DrivePart extends BotPart {
         backLeft = new Jaguar(4);
         
         roboDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+        
+        roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        roboDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        roboDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
     }
     
     public void updateTeleop(){
@@ -43,6 +47,8 @@ public class DrivePart extends BotPart {
             roboDrive.mecanumDrive_Cartesian(0, bot.getSensor().getDriverStick().getY(), bot.getSensor().getDriverStick().getX(), 0);
         else
             roboDrive.mecanumDrive_Cartesian(bot.getSensor().getDriverStick().getX(), bot.getSensor().getDriverStick().getY(), 0, 0);
+        
+        
         
     }
     

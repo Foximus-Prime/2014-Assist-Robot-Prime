@@ -48,8 +48,8 @@ public class ShooterPart extends BotPart {
         else
             release.set(DoubleSolenoid.Value.kReverse);
         
-        if (!armLimitSwitch)
-            pullMotor.set(speed);
+        if (bot.getSensor().getOpStick().getRawButton(5))
+            pullMotor.set(bot.getSensor().getOpStick().getY());
         else
             pullMotor.stopMotor();
     }

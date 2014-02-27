@@ -35,7 +35,7 @@ public class BotRunner extends IterativeRobot {
         sensor = new SensorPart(this);
         shooter = new ShooterPart(this);
         
-        pnuematic.compressorOn();
+        //pnuematic.compressorOn();
     }
     
     public void autonomusInit(){
@@ -54,7 +54,7 @@ public class BotRunner extends IterativeRobot {
     }
     
     public void teleopDisable(){
-        pnuematic.compressorOff();
+        //pnuematic.compressorOff();
     }
 
     public void teleopPeriodic() {

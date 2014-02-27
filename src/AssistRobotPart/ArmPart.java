@@ -38,7 +38,7 @@ public class ArmPart extends BotPart {
         if(bot.getSensor().getOpStick().getRawButton(2))
             armControl.set(DoubleSolenoid.Value.kReverse);
         
-        else if(!armLimit && bot.getSensor().getOpStick().getRawButton(3))
+        else if(bot.getSensor().getOpStick().getRawButton(3))
             armControl.set(DoubleSolenoid.Value.kForward);
         
         else 
