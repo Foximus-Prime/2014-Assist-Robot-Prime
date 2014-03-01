@@ -21,11 +21,11 @@ public class BotRunner extends IterativeRobot {
      * This function is called once each time the robot enters autonomous mode.
      */    
     
-    ArmPart arm;
-    DrivePart drive;
-    PnuematicPart pnuematic;
-    SensorPart sensor;
-    ShooterPart shooter;
+    private ArmPart arm;
+    private DrivePart drive;
+    private PnuematicPart pnuematic;
+    private SensorPart sensor;
+    private ShooterPart shooter;
     
     public void robotInit() {
         

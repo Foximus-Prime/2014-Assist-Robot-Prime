@@ -4,6 +4,9 @@ package AssistRobotPart;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
+import edu.wpi.first.wpilibj.camera.AxisCameraException;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import AssistRobotRunner.BotRunner;
 
@@ -13,18 +16,22 @@ import AssistRobotRunner.BotRunner;
  */
 public class SensorPart extends BotPart{
     
+    private NetworkTable driverStation;
+    
     private Joystick driveStick;
     private Joystick opStick;
     
     private DigitalInput armLimit;
     private DigitalInput armSensor;
     
-    private Ultrasonic frontUltra;
+    private AxisCamera camera;
     
-    private SmartDashboard smarts;
+    private Ultrasonic frontUltra;
     
     public SensorPart(BotRunner runner){
         super(runner);
+        
+        driverStation = NetworkTable.getTable("SmartDashboard");
         
         driveStick = new Joystick(1);
         opStick = new Joystick(2);
@@ -33,10 +40,14 @@ public class SensorPart extends BotPart{
         armSensor = new DigitalInput(3);
         
         //frontUltra = new Ultrasonic(2,2);
+    
     }
     
     public void UpdateTeleop(){
     }
+    
+    //public AxisCamera getCam()
+    //{}
     
     public Joystick getDriverStick()
     {return driveStick;}

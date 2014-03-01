@@ -22,7 +22,7 @@ public class ShooterPart extends BotPart {
     
     private boolean armLimitSwitch;
     private boolean shooterReady;
-    
+        
     private DoubleSolenoid release;
    
     public ShooterPart(BotRunner runner){
@@ -49,7 +49,13 @@ public class ShooterPart extends BotPart {
             release.set(DoubleSolenoid.Value.kReverse);
         
         if (bot.getSensor().getOpStick().getRawButton(5))
-            pullMotor.set(bot.getSensor().getOpStick().getY());
+            pullMotor.set(1);
+        else
+            pullMotor.stopMotor();
+        
+        
+        if (bot.getSensor().getOpStick().getRawButton(4))
+            pullMotor.set(-1);
         else
             pullMotor.stopMotor();
     }
