@@ -43,10 +43,13 @@ public class ShooterPart extends BotPart {
     public void updateTeleop(){
     
         armLimitSwitch = bot.getSensor().getArmLimit();
-        if(bot.getSensor().getOpStick().getTrigger() && armLimitSwitch)
+        
+        
+        if(bot.getSensor().getOpStick().getTrigger())
             release.set(DoubleSolenoid.Value.kForward);
         else
             release.set(DoubleSolenoid.Value.kReverse);
+        
         
         if (bot.getSensor().getOpStick().getRawButton(5))
             pullMotor.set(1);

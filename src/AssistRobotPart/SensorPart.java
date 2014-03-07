@@ -28,6 +28,8 @@ public class SensorPart extends BotPart{
     
     private Ultrasonic frontUltra;
     
+    private SmartDashboard dash;
+    
     public SensorPart(BotRunner runner){
         super(runner);
         
@@ -35,6 +37,8 @@ public class SensorPart extends BotPart{
         
         driveStick = new Joystick(1);
         opStick = new Joystick(2);
+        
+        
         
         armLimit = new DigitalInput(4);
         armSensor = new DigitalInput(3);
@@ -44,6 +48,7 @@ public class SensorPart extends BotPart{
     }
     
     public void UpdateTeleop(){
+        
     }
     
     //public AxisCamera getCam()

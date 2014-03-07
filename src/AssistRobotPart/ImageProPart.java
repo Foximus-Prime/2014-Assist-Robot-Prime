@@ -10,4 +10,5 @@ package AssistRobotPart;
  */
 public class ImageProPart {
     
+    
 }

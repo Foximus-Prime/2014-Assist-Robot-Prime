@@ -51,10 +51,11 @@ public class BotRunner extends IterativeRobot {
     }
     
     public void teleopInit(){
+        pnuematic.compressorOn();
     }
     
     public void teleopDisable(){
-        //pnuematic.compressorOff();
+        pnuematic.compressorOff();
     }
 
     public void teleopPeriodic() {
