@@ -14,6 +14,7 @@ import AssistRobotPart.DrivePart;
 import AssistRobotPart.PnuematicPart;
 import AssistRobotPart.SensorPart;
 import AssistRobotPart.ShooterPart;
+import AssistRobotPart.ImageProPart;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class BotRunner extends IterativeRobot {
@@ -26,6 +27,7 @@ public class BotRunner extends IterativeRobot {
     private PnuematicPart pnuematic;
     private SensorPart sensor;
     private ShooterPart shooter;
+    private ImageProPart image;
     
     public void robotInit() {
         
@@ -34,11 +36,14 @@ public class BotRunner extends IterativeRobot {
         pnuematic = new PnuematicPart(this);
         sensor = new SensorPart(this);
         shooter = new ShooterPart(this);
+        image = new ImageProPart(this);
         
         //pnuematic.compressorOn();
     }
     
-    public void autonomusInit(){
+    public void autonomousInit(){
+        drive.startTimer();
+        shooter.resetFired();
     }
         
     public void autonomousPeriodic() {
@@ -48,10 +53,12 @@ public class BotRunner extends IterativeRobot {
         pnuematic.updateAuto();
         sensor.updateAuto();
         shooter.updateAuto();
+        image.updateAuto();
     }
     
     public void teleopInit(){
         pnuematic.compressorOn();
+        shooter.startArms();
     }
     
     public void teleopDisable(){
@@ -65,6 +72,7 @@ public class BotRunner extends IterativeRobot {
         pnuematic.updateTeleop();
         sensor.updateTeleop();
         shooter.updateTeleop();
+        image.updateTeleop();
     }
     
     public ArmPart getArm()
@@ -81,5 +89,8 @@ public class BotRunner extends IterativeRobot {
     
     public ShooterPart getShooter()
     {return shooter;}
+    
+    public ImageProPart getImage()
+    {return image;}
 }
     

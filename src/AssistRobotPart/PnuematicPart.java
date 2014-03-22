@@ -4,11 +4,8 @@
  */
 package AssistRobotPart;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Compressor;
 import AssistRobotRunner.BotRunner;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  *
@@ -17,15 +14,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class PnuematicPart extends BotPart {
     
     private Compressor botCompressor;
-
-    private SmartDashboard dash;
     
     private BotRunner bot;
     
     public PnuematicPart(BotRunner runner){
         super(runner);
-        
-        dash = new SmartDashboard();
         
         bot = runner;
         
@@ -38,11 +31,7 @@ public class PnuematicPart extends BotPart {
     public void compressorOff()
     {botCompressor.stop();}
     
-    public void updateTeleop(){
-        
-          dash.putBoolean("pressure switch!", botCompressor.getPressureSwitchValue());
-          dash.putBoolean("compressor enabled", botCompressor.enabled());
-        
-    }
+    public boolean isCompressing()
+    {return botCompressor.getPressureSwitchValue();}
     
 }

@@ -1,7 +1,7 @@
 
 package AssistRobotPart;
 
-import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
@@ -16,6 +16,8 @@ import AssistRobotRunner.BotRunner;
  */
 public class SensorPart extends BotPart{
     
+    private AxisCamera cam;
+    
     private NetworkTable driverStation;
     
     private Joystick driveStick;
@@ -26,28 +28,35 @@ public class SensorPart extends BotPart{
     
     private AxisCamera camera;
     
-    private Ultrasonic frontUltra;
+    private AnalogChannel ultraSonic;
     
     private SmartDashboard dash;
     
     public SensorPart(BotRunner runner){
         super(runner);
         
-        driverStation = NetworkTable.getTable("SmartDashboard");
+        //driverStation = NetworkTable.getTable("SmartDashboard");
         
         driveStick = new Joystick(1);
         opStick = new Joystick(2);
         
-        
+        ultraSonic = new AnalogChannel(6);
         
         armLimit = new DigitalInput(4);
-        armSensor = new DigitalInput(3);
+        armSensor = new DigitalInput(14);
         
         //frontUltra = new Ultrasonic(2,2);
     
     }
     
     public void UpdateTeleop(){
+        
+        dash.putDouble("UltraDistance", ultraSonic.getVoltage());
+    }
+    
+    public void UpdateAuto(){
+        
+        dash.putDouble("UltraDistance", ultraSonic.getVoltage());
         
     }
     
@@ -64,7 +73,7 @@ public class SensorPart extends BotPart{
     {return armLimit.get();}
     
     public double getUltra()
-    {return frontUltra.getRangeInches();}
+    {return ultraSonic.getAverageValue();}
     
     public boolean getArmSensor()
     {return armSensor.get();}

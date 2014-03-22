@@ -4,10 +4,10 @@
  */
 package AssistRobotPart;
 
+import AssistRobotRunner.BotRunner;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import AssistRobotRunner.BotRunner;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -19,6 +19,13 @@ public class DrivePart extends BotPart {
     private Jaguar frontLeft;
     private Jaguar backRight;
     private Jaguar backLeft;
+
+    private int shotRange;
+    
+    private Timer autoTime;
+    
+    private double highRange;
+    private double lowRange;
     
     private BotRunner bot;
     
@@ -26,8 +33,14 @@ public class DrivePart extends BotPart {
     
     public DrivePart(BotRunner runner){
         super(runner);
-        
+         
         bot = runner;
+        
+        shotRange = 140;
+        highRange = 110;
+        lowRange = 80;
+        
+        autoTime = new Timer();
         
         frontRight = new Jaguar(1);
         frontLeft = new Jaguar(2);
@@ -49,4 +62,32 @@ public class DrivePart extends BotPart {
         
     }
     
+    public void updateAuto(){
+        if(bot.getSensor().getUltra() > shotRange){
+            autoTime.reset();
+            roboDrive.mecanumDrive_Cartesian(0, -0.5 , 0, 0);
+        }
+                    
+        if(autoTime.get() > 3){
+            bot.getShooter().fire();
+            roboDrive.mecanumDrive_Cartesian(0, 0, 0, 0);
+        }
+    }
+    
+    public void startTimer(){
+        autoTime.reset();
+        autoTime.start();
+    }
+    
+    public boolean inRange()
+    {return bot.getSensor().getUltra() < highRange && bot.getSensor().getUltra() > lowRange;}
+    
+    public double getTimer()
+    {return autoTime.get();}
+    
 }
+
+
+
+
+

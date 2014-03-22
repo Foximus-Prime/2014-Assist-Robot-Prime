@@ -4,9 +4,10 @@
  */
 package AssistRobotPart;
 
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import AssistRobotRunner.BotRunner;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -14,7 +15,11 @@ import AssistRobotRunner.BotRunner;
  */
 public class ShooterPart extends BotPart {
     
+    private Timer fireTime;
+    private Timer pullTime;
+    
     private double speed;
+    private double pullBack;
     
     private Jaguar pullMotor;
     
@@ -22,6 +27,7 @@ public class ShooterPart extends BotPart {
     
     private boolean armLimitSwitch;
     private boolean shooterReady;
+    private boolean fired;
         
     private DoubleSolenoid release;
    
@@ -29,6 +35,7 @@ public class ShooterPart extends BotPart {
         super(runner);
         
         speed = 1;
+        pullBack = 2;
         
         bot = runner;
         
@@ -36,8 +43,12 @@ public class ShooterPart extends BotPart {
         
         armLimitSwitch = true;
         shooterReady = false;
+        fired = false;
         
         release = new DoubleSolenoid(1,2);
+        
+        fireTime = new Timer();
+        pullTime = new Timer();
     }
     
     public void updateTeleop(){
@@ -45,21 +56,44 @@ public class ShooterPart extends BotPart {
         armLimitSwitch = bot.getSensor().getArmLimit();
         
         
-        if(bot.getSensor().getOpStick().getTrigger())
+        if(bot.getSensor().getOpStick().getTrigger()){
             release.set(DoubleSolenoid.Value.kForward);
+            pullTime.reset();
+        }
         else
             release.set(DoubleSolenoid.Value.kReverse);
         
-        
-        if (bot.getSensor().getOpStick().getRawButton(5))
-            pullMotor.set(1);
+        if(pullTime.get() > 0.25 && pullTime.get() < pullBack)
+            pullMotor.set(-1);
         else
             pullMotor.stopMotor();
         
+        if (bot.getSensor().getOpStick().getRawButton(4) && bot.getSensor().getArmLimit())
+            pullMotor.set(-1);
+        else
+            pullMotor.stopMotor();
         
-        if (bot.getSensor().getOpStick().getRawButton(4))
+    }
+    
+    public void updateAuto(){
+    
+        if(!bot.getSensor().getArmSensor() && !fired)
             pullMotor.set(-1);
         else
             pullMotor.stopMotor();
     }
+    
+    public void fire(){
+       fired = true;
+       release.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void startArms()
+    { pullTime.start();}
+    
+    public boolean getFired()
+    {return fired;}
+    
+    public void resetFired()
+    {fired = false;}
 }
