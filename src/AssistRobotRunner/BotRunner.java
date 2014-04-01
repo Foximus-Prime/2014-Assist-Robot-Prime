@@ -7,14 +7,7 @@
 
 package AssistRobotRunner;
 
-
-import edu.wpi.first.wpilibj.SimpleRobot;
-import AssistRobotPart.ArmPart;
-import AssistRobotPart.DrivePart;
-import AssistRobotPart.PnuematicPart;
-import AssistRobotPart.SensorPart;
-import AssistRobotPart.ShooterPart;
-import AssistRobotPart.ImageProPart;
+import AssistRobotPart.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class BotRunner extends IterativeRobot {
@@ -28,6 +21,7 @@ public class BotRunner extends IterativeRobot {
     private SensorPart sensor;
     private ShooterPart shooter;
     private ImageProPart image;
+    private DriverStationPart ds;
     
     public void robotInit() {
         
@@ -37,6 +31,7 @@ public class BotRunner extends IterativeRobot {
         sensor = new SensorPart(this);
         shooter = new ShooterPart(this);
         image = new ImageProPart(this);
+        ds = new DriverStationPart(this);
         
         //pnuematic.compressorOn();
     }
@@ -54,6 +49,7 @@ public class BotRunner extends IterativeRobot {
         sensor.updateAuto();
         shooter.updateAuto();
         image.updateAuto();
+        ds.updateAuto();
     }
     
     public void teleopInit(){
@@ -73,6 +69,7 @@ public class BotRunner extends IterativeRobot {
         sensor.updateTeleop();
         shooter.updateTeleop();
         image.updateTeleop();
+        ds.updateTeleop();
     }
     
     public ArmPart getArm()

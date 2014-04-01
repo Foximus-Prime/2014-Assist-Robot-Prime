@@ -36,9 +36,9 @@ public class DrivePart extends BotPart {
          
         bot = runner;
         
-        shotRange = 140;
-        highRange = 110;
-        lowRange = 80;
+        shotRange = 90;
+        highRange = 60;
+        lowRange = 30;
         
         autoTime = new Timer();
         

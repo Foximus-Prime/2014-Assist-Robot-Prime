@@ -6,7 +6,6 @@ package AssistRobotPart;
 
 import AssistRobotRunner.BotRunner;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
 
 /**
  *
@@ -20,22 +19,16 @@ public class ArmPart extends BotPart {
     private DoubleSolenoid armControlOne;
     private DoubleSolenoid armControlTwo;
     
-    private boolean armLimit;
-    
     public ArmPart(BotRunner runner){
         super(runner);
         
         bot = runner;
-        
-        armLimit = true;
       
         armControlOne = new DoubleSolenoid(3,4);
         armControlTwo = new DoubleSolenoid(5,6);
     }
     
     public void updateTeleop(){
-        
-        armLimit = bot.getSensor().getArmLimit();
         
         if(bot.getSensor().getOpStick().getRawButton(2)){
             armControlOne.set(DoubleSolenoid.Value.kForward);

@@ -4,15 +4,11 @@
  */
 package AssistRobotPart;
 
-import edu.wpi.first.wpilibj.camera.AxisCamera;
-import edu.wpi.first.wpilibj.camera.AxisCameraException;
-import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
-import edu.wpi.first.wpilibj.image.Image;
-import edu.wpi.first.wpilibj.image.ColorImage;
-import edu.wpi.first.wpilibj.image.BinaryImage;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import AssistRobotRunner.BotRunner;
-import edu.wpi.first.wpilibj.image.NIVisionException;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
+import edu.wpi.first.wpilibj.image.BinaryImage;
+import edu.wpi.first.wpilibj.image.ColorImage;
+import edu.wpi.first.wpilibj.image.Image;
 
 /**
  *
@@ -21,20 +17,12 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 
 public class ImageProPart extends BotPart {
     
-    private BotRunner bot;
-    
-    private AxisCamera cam;
-    
     private BinaryImage darkImage;
-    
-    private ColorImage colorImage;
     
     public ImageProPart(BotRunner runner){
         super(runner);
         
-        bot = runner;
-        
-        cam.getInstance("10.36.95.11");
+        AxisCamera.getInstance("10.36.95.11");
     }
     
     public void updateTeleop(){

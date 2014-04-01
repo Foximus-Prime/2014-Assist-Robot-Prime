@@ -15,12 +15,8 @@ public class PnuematicPart extends BotPart {
     
     private Compressor botCompressor;
     
-    private BotRunner bot;
-    
     public PnuematicPart(BotRunner runner){
         super(runner);
-        
-        bot = runner;
         
         botCompressor = new Compressor(1,1);
     }
