@@ -47,11 +47,6 @@ public class ShooterPart extends BotPart {
         else
             release.set(DoubleSolenoid.Value.kReverse);
         
-//        if(pullTime.get() > 0.25 && pullTime.get() < pullBack)
-//            pullMotor.set(-1);
-//        else
-//            pullMotor.stopMotor();
-        
         if (bot.getSensor().getOpStick().getRawButton(4))
             pullMotor.set(-1);
         else

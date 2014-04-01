@@ -19,18 +19,12 @@ public class SensorPart extends BotPart{
     public SensorPart(BotRunner runner){
         super(runner);
         
-        //driverStation = NetworkTable.getTable("SmartDashboard");
-        
         driveStick = new Joystick(1);
         opStick = new Joystick(2);
         
         ultraSonic = new AnalogChannel(6);
-        
-        //frontUltra = new Ultrasonic(2,2);
     
     }
-    //public AxisCamera getCam()
-    //{}
     
     public Joystick getDriverStick()
     {return driveStick;}
